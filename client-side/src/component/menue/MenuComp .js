@@ -29,7 +29,6 @@ class MenuComp extends React.Component {
                         <li className="nav-item"><Link className='nav-link'> Welcom:{localStorage.getItem('username')}</Link> </li>
                         <li className='nav-item' onClick={this.LogOff.bind()}><Link className='nav-link' to="/">Log Off</Link></li>
                     </ul>
-                    Tomer
                 </nav>
             </div>
         )

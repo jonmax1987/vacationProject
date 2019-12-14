@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import EditComp from './edit';
 import io from 'socket.io-client';
+import MenuAdmin from './menu_admin';
 
 const socket = io('/');
 
@@ -94,16 +95,13 @@ class VacationComp extends React.Component {
     render() {
         return <div className='container'>
             <div className='row'>
-                <div className='col-md-4'>
-                    <button className='btn btn-info '><Link to='/addvacation' className='text-light'>Add Vacation</Link></button>
-                </div>
-                <div className='col-md-8'>
-                    {this.state.show_edit ? <EditComp closeFun={this.closeEditComp.bind(this)} obj={this.state.thisVacation}></EditComp> : null}
+                <div className='col'>
+                    <MenuAdmin vacation={this.state.vacation} ></MenuAdmin>
                 </div>
             </div>
             <div className='row'>
                 {this.state.vacation.map((obj, i) => {
-                    return <div className="card col-md-4" key={i}>
+                    return <div className="card m-1 col" key={i}>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzV4e-pbvbIdIyy0MX3xBx95vgIepWqrwv1pJau5PP_tVRGx_fH08A3ovauw&s" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <span className='card-title btn btn-light' onClick={this.deletVacation.bind(this, obj)}><i className="far fa-times-circle"></i></span>

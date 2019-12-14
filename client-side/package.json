@@ -2,13 +2,15 @@
   "name": "client-side",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3100/",
+  "proxy": "http://localhost:3101/",
   "dependencies": {
     "react": "^16.11.0",
+    "react-canvas-js": "^1.0.1",
     "react-circle": "^1.1.1",
     "react-dom": "^16.11.0",
+    "react-google-charts": "^3.0.15",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "^3.3.0",
     "redirect": "^0.2.0",
     "socket.io-client": "^2.3.0"
   },

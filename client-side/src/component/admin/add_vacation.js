@@ -1,4 +1,6 @@
 import React from 'react';
+import MenuAdmin from './menu_admin';
+
 
 class AddVacationComp extends React.Component {
 
@@ -10,7 +12,7 @@ class AddVacationComp extends React.Component {
         endDate: '',
         price: '',
         NumberFollowers: '',
-        img_64:'',
+        img_64: '',
         obj: {}
     }
 
@@ -49,35 +51,44 @@ class AddVacationComp extends React.Component {
     handlChange(e) {
         this.setState({ [e.target.name]: e.target.value });
         console.log(e.target.name);
-        
-        if(e.target.name == 'img'){
-           this.state.img_64 = btoa(e.target.value);
-           this.setState({});
-           console.log(this.state.img_64);
+
+        if (e.target.name == 'img') {
+            this.state.img_64 = btoa(e.target.value);
+            this.setState({});
+            console.log(this.state.img_64);
         }
     };
 
     render() {
-        return <div className='col md-12'>
-            <div className='form-group'>
-                <input className='form-control' name='description' onChange={this.handlChange.bind(this)} placeholder='Description...' />
+        return <div className='container'>
+            <div className='row'>
+                <div className='col'>
+                    <MenuAdmin></MenuAdmin>
+                </div>
             </div>
-            <div className='form-group'>
-                <input className='form-control' name='target' onChange={this.handlChange.bind(this)} placeholder='Target...' />
+            <div className='row'>
+                <div className='col md-12'>
+                    <div className='form-group'>
+                        <input className='form-control' name='description' onChange={this.handlChange.bind(this)} placeholder='Description...' />
+                    </div>
+                    <div className='form-group'>
+                        <input className='form-control' name='target' onChange={this.handlChange.bind(this)} placeholder='Target...' />
+                    </div>
+                    <div className='form-group'>
+                        <input className='form-control' name='startDate' onChange={this.handlChange.bind(this)} placeholder='Start Date...' />
+                    </div>
+                    <div className='form-group'>
+                        <input className='form-control' name='endDate' onChange={this.handlChange.bind(this)} placeholder='End Date...' />
+                    </div>
+                    <div className='form-group'>
+                        <input className='form-control' name='price' onChange={this.handlChange.bind(this)} placeholder='Price...' />
+                    </div>
+                    <div className='form-group'>
+                        <input className='form-control' name='img' onChange={this.handlChange.bind(this)} placeholder='img...' />
+                    </div>
+                    <div className='btn btn-info' onClick={this.savevacation.bind()}>add vacation</div>
+                </div>
             </div>
-            <div className='form-group'>
-                <input className='form-control' name='startDate' onChange={this.handlChange.bind(this)} placeholder='Start Date...' />
-            </div>
-            <div className='form-group'>
-                <input className='form-control' name='endDate' onChange={this.handlChange.bind(this)} placeholder='End Date...' />
-            </div>
-            <div className='form-group'>
-                <input className='form-control' name='price' onChange={this.handlChange.bind(this)} placeholder='Price...' />
-            </div>
-            <div className='form-group'>
-                <input className='form-control' name='img' onChange={this.handlChange.bind(this)} placeholder='img...' />
-            </div>
-            <div className='btn btn-info' onClick={this.savevacation.bind()}>add vacation</div>
         </div>
 
     }

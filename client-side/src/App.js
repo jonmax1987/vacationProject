@@ -9,6 +9,7 @@ import AddVacationComp from './component/admin/add_vacation';
 import VacationComp from './component/admin/vacation';
 import EditComp from './component/admin/edit';
 import Compjs from './component/comp';
+import CanvasComp from './component/admin/CanvasComp';
 
 import io from 'socket.io-client';
 
@@ -39,6 +40,7 @@ class App extends React.Component {
             <Route path="/admin" component={VacationComp} />
             <Route path="/edit" component={EditComp} />
             <Route path="/compjs" component={Compjs} />
+            <Route path="/graph" component={CanvasComp} />
           </div>
       </Router>
     </div>
