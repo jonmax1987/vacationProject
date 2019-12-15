@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import io from 'socket.io-client';
 
 const socket = io('/');
@@ -19,9 +18,9 @@ class HomeComp extends React.Component {
 
     componentDidMount() {
         socket.emit('Get_vacation')
-        socket.on('Enable_function',()=>{
+        socket.on('Enable_function', () => {
             this.getVacation();
-            console.log('got vacation');   
+            console.log('got vacation');
         })
         this.myFunc();
     }
@@ -74,7 +73,7 @@ class HomeComp extends React.Component {
             })
     }
 
-  
+
 
     folowVacation = (obj) => {
         let folow = {
@@ -124,7 +123,6 @@ class HomeComp extends React.Component {
                 {this.state.vacation.map((obj, i) => {
                     return <div className='col-md-4' key={i}>
                         <div className="card" key={i}>
-                            <img src={obj.img} className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <button style={{
                                     width: '30px',
@@ -134,10 +132,13 @@ class HomeComp extends React.Component {
                                     textAlign: 'center',
                                     fontSize: '12px',
                                     lineHeight: '1.42857'
-                                }} className="btn btn-light btn-circle btn-circle-sm m-1" onClick={this.folowVacation.bind(this, obj)}>{obj.like_ ? <i className="fas fa-thumbs-up"></i> : <i className="fas fa-thumbs-down"></i>}</button>
-                                <h2 className="card-text">Description: {obj.description}</h2>
+                                }} className="btn btn-light btn-circle btn-circle-sm m-1" onClick={this.folowVacation.bind(this, obj)}>{obj.like_ ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</button>
+                                <h4 className="card-text">Description: <strong>{obj.description}</strong></h4>
+                                <p className="card-text">Price: <strong>{obj.price}</strong></p>
+                                <img src={obj.img} className="card-img-top" alt="..." />
                                 <h6 className="card-text">Target: {obj.target}</h6>
                                 <p className="card-text">Start Date: {obj.start_date}</p>
+                                <p className="card-text">End Date: {obj.end_date}</p>
                                 <button style={{
                                     width: '30px',
                                     height: '30px',

@@ -1,5 +1,7 @@
 import React from 'react';
-import MenuAdmin from './menu_admin';
+import io from 'socket.io-client';
+
+const socket = io('/');
 
 
 class AddVacationComp extends React.Component {
@@ -42,6 +44,7 @@ class AddVacationComp extends React.Component {
             .then((res) => {
                 console.log(res);
                 this.setState({ vacation: res.data });
+                socket.emit('Get_vacation');
             })
             .catch((err) => {
                 console.log("Error: ", err);
@@ -53,8 +56,8 @@ class AddVacationComp extends React.Component {
         console.log(e.target.name);
 
         if (e.target.name == 'img') {
-            this.state.img_64 = btoa(e.target.value);
-            this.setState({});
+            // this.state.img_64 = btoa(e.target.value);
+            this.setState({img_64:btoa(e.target.value)});
             console.log(this.state.img_64);
         }
     };

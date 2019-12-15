@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Redirect } from 'react-router';
 
 class MenuAdmin extends React.Component {
 

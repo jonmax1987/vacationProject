@@ -5,12 +5,14 @@ import MenuAdmin from './menu_admin';
 import AddVacationComp from './add_vacation';
 import VacationComp from './vacation';
 import CanvasComp from './CanvasComp';
+import EditComp from './edit';
 
 const socket = io('/');
 
 class AdminComp extends React.Component {
     state = {
         vacation: [],
+        vacation_show:true
     }
 
     componentDidMount() {
@@ -68,9 +70,11 @@ class AdminComp extends React.Component {
                 </div>
                 <div className='row d-flex justify-content-center'>
                     <div className='col'>
-                        <Route exact path="/" component={VacationComp} />
+                        <VacationComp/>
+                        {/* <Route exact path='/vacation' component={VacationComp} /> */}
                         <Route path="/addvacation" component={AddVacationComp} />
                         <Route path="/graph" component={() => <CanvasComp vacation={this.state.vacation} />} />
+                        <Route path="/edit" component={EditComp} />
                     </div>
                 </div>
             </Router>

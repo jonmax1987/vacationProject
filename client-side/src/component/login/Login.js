@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import io from 'socket.io-client';
 import { Redirect } from 'react-router';
 
 

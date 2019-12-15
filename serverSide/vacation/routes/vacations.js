@@ -21,8 +21,8 @@ router.post('/vacation', async function (req, res, next) {
         res.json(respons);
         return;
       }
-      
-      con.query('SELECT * FROM vacation',async function (err, result, fields) {
+
+      con.query('SELECT * FROM vacation', async function (err, result, fields) {
         if (err) {
           respons.success = false;
           respons.error = true;
@@ -35,12 +35,12 @@ router.post('/vacation', async function (req, res, next) {
           // let temp_vac = result;
           result.map((obj, index) => {
             if (obj.id == folowing[i].vacationid) {
+              obj.like_ = 1
               vacation_list.unshift(obj)
               result.splice(index, 1)
             }
           })
         }
-        console.log(folowing);
         result.map((obj) => {
           vacation_list.push(obj);
         })
@@ -109,9 +109,9 @@ router.put('/vacation', function (req, res, next) {
 
 
 // /* update vacation */
-router.post('/vacation', function (req, res, next) {
+router.post('/Update', function (req, res, next) {
   var respons = new httpRespons;
-  console.log(req.body);
+  // console.log(req.body);
 
   let description = req.body.description;
   let target = req.body.target;
@@ -145,7 +145,7 @@ router.post('/vacation', function (req, res, next) {
 router.delete('/vacation', function (req, res, next) {
   var respons = new httpRespons;
   let id = req.body.id;
-  console.log(req.body);
+  // console.log(req.body);
 
   con.query(`DELETE FROM vacation WHERE id = ${id}`, function (err, result, fields) {
     if (err) {
@@ -156,7 +156,7 @@ router.delete('/vacation', function (req, res, next) {
       res.json(respons);
       return;
     }
-    console.log(id);
+    // console.log(id);
     respons.success = true;
     respons.error = false;
     respons.message = "vacation deleted!!!";

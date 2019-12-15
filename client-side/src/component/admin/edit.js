@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class EditComp extends React.Component {
 
@@ -9,7 +8,8 @@ class EditComp extends React.Component {
         img: this.props.obj.img,
         startDate: this.props.obj.start_date,
         endDate: this.props.obj.end_date,
-        price: this.props.obj.price
+        price: this.props.obj.price,
+        img_64:''
     }
 
     componentDidMount() {
@@ -21,13 +21,13 @@ class EditComp extends React.Component {
         let obj = {
             description: this.state.description,
             target: this.state.target,
-            img: this.state.img,
+            img: this.state.img_64,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
             price: this.state.price,
             id: this.props.obj.id
         }
-        fetch('/vacations/vacation', {
+        fetch('/vacations/Update', {
             method: "POST",
             body: JSON.stringify(obj),
             headers: {
@@ -47,6 +47,12 @@ class EditComp extends React.Component {
     handlChange(e) {
         this.state[e.target.name] = e.target.value;
         this.setState({});
+        
+        if (e.target.name == 'img') {
+            this.state.img_64 = btoa(e.target.value);
+            this.setState({});
+            console.log(this.state.img_64);
+        }
     };
 
     render() {
@@ -61,7 +67,7 @@ class EditComp extends React.Component {
                 <input className='form-control' name='startDate' value={this.state.startDate} onChange={this.handlChange.bind(this)} placeholder='Start Date...' />
             </div>
             <div className='form-group'>
-                <input className='form-control' name='endtDate' value={this.state.endDate} onChange={this.handlChange.bind(this)} placeholder='End Date...' />
+                <input className='form-control' name='endDate' value={this.state.endDate} onChange={this.handlChange.bind(this)} placeholder='End Date...' />
             </div>
             <div className='form-group'>
                 <input className='form-control' name='price' value={this.state.price} onChange={this.handlChange.bind(this)} placeholder='Price...' />
