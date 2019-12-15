@@ -62,11 +62,6 @@ class AddVacationComp extends React.Component {
     render() {
         return <div className='container'>
             <div className='row'>
-                <div className='col'>
-                    <MenuAdmin></MenuAdmin>
-                </div>
-            </div>
-            <div className='row'>
                 <div className='col md-12'>
                     <div className='form-group'>
                         <input className='form-control' name='description' onChange={this.handlChange.bind(this)} placeholder='Description...' />

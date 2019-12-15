@@ -1,32 +1,52 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import CanvasJSReact from '../../assets/canvasjs.react';
+import { Socket } from 'dgram';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
-class CanvasComp extends Component {	
-    render() {
-      const options = {
-        title: {
-          text: "Basic Column Chart in React"
-        },
-        data: [{				
-                  type: "column",
-                  dataPoints: [
-                      { label: "Apple",  y: 10  },
-                      { label: "Orange", y: 15  },
-                      { label: "Banana", y: 25  },
-                      { label: "Mango",  y: 30  },
-                      { label: "Grape",  y: 28  }
-                  ]
-         }]
-     }
-          
-     return (
-        <div>
-          <CanvasJSChart options = {options}
-              /* onRef = {ref => this.chart = ref} */
-          />
-        </div>
-      );
-    }
+const socket = io('/');
+
+
+class CanvasComp extends Component {
+  state = {
+    vacation: []
   }
-  export default CanvasComp;
+  componentDidMount() {
+    console.log(this.props.vacation);
+    this.option(this.props.vacation)
+  }
+
+  option(props) {
+    props.map((obj) => {
+      let datapoint = {
+        label: '',
+        y: 0
+      }
+      datapoint.label = obj.description;
+      datapoint.y = obj.number_followers;
+      this.state.vacation.push(datapoint);
+      this.setState({});
+    })
+  };
+
+  render() {
+    var options = {
+      title: {
+        text: "Basic Column Chart in React"
+      },
+      data: [{
+        type: "column",
+        dataPoints: this.state.vacation
+      }]
+    }
+
+    return (
+      <div>
+        <CanvasJSChart options={options}
+        /* onRef = {ref => this.chart = ref} */
+        />
+      </div>
+    );
+  }
+}
+export default CanvasComp;

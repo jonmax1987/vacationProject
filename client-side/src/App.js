@@ -12,16 +12,13 @@ import Compjs from './component/comp';
 import CanvasComp from './component/admin/CanvasComp';
 
 import io from 'socket.io-client';
+import AdminComp from './component/admin/admin';
 
 const socket = io('/');
 
 class App extends React.Component {
 
   componentDidMount() {
-    socket.emit('newvacation');
-    socket.on('newvacationadded', function () {
-      console.log("socket work");
-    })
   }
 
   render() {
@@ -36,11 +33,9 @@ class App extends React.Component {
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/home" component={HomeComp} />
-            <Route path="/addvacation" component={AddVacationComp} />
-            <Route path="/admin" component={VacationComp} />
+            <Route path="/admin" component={AdminComp} />
             <Route path="/edit" component={EditComp} />
             <Route path="/compjs" component={Compjs} />
-            <Route path="/graph" component={CanvasComp} />
           </div>
       </Router>
     </div>

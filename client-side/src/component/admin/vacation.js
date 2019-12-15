@@ -12,15 +12,16 @@ class VacationComp extends React.Component {
     state = {
         vacation: [],
         thisVacation: {},
-        show_edit: false
+        show_edit: false,
+        temp: 'ok'
     }
 
     componentDidMount() {
-        this.getVacation();
-        socket.emit('folowing')
-        socket.on('get_vacation', function () {
-            console.log("socket work");
+        socket.emit('Get_vacation')
+        socket.on('Enable_function', () => {
             this.getVacation();
+            console.log('got vacation');
+
         })
     };
 
@@ -77,7 +78,8 @@ class VacationComp extends React.Component {
             .then(res => res.json())
             .then((res) => {
                 console.log(res);
-                // this.getVacation();
+                socket.emit('Get_vacation')
+
             })
             .catch((err) => {
                 console.log("Error: ", err);
@@ -86,7 +88,7 @@ class VacationComp extends React.Component {
 
     closeEditComp = () => {
         this.state.show_edit = false;
-        // this.getVacation();
+        socket.emit('Get_vacation')
     }
 
 
@@ -95,13 +97,8 @@ class VacationComp extends React.Component {
     render() {
         return <div className='container'>
             <div className='row'>
-                <div className='col'>
-                    <MenuAdmin vacation={this.state.vacation} ></MenuAdmin>
-                </div>
-            </div>
-            <div className='row'>
                 {this.state.vacation.map((obj, i) => {
-                    return <div className="card m-1 col" key={i}>
+                    return <div className="card m-1 col-md-3" key={i}>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzV4e-pbvbIdIyy0MX3xBx95vgIepWqrwv1pJau5PP_tVRGx_fH08A3ovauw&s" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <span className='card-title btn btn-light' onClick={this.deletVacation.bind(this, obj)}><i className="far fa-times-circle"></i></span>

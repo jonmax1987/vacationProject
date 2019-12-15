@@ -18,11 +18,10 @@ class HomeComp extends React.Component {
     }
 
     componentDidMount() {
-        this.getVacation();
-        // socket.emit('get Vacation');
-        socket.on('msg-get vacation', () => {
+        socket.emit('Get_vacation')
+        socket.on('Enable_function',()=>{
             this.getVacation();
-            console.log("msg-get vacation");
+            console.log('got vacation');   
         })
         this.myFunc();
     }
@@ -95,11 +94,11 @@ class HomeComp extends React.Component {
                     this.state.folow_like = false;
                     this.setState({});
                     console.log(res.message);
-                    socket.emit('get Vacation');
+                    socket.emit('Get_vacation');
                 } else {
                     this.state.folow_like = true;
                     console.log(res.message, true);
-                    socket.emit('get Vacation');
+                    socket.emit('Get_vacation');
                 }
 
             })
@@ -123,7 +122,7 @@ class HomeComp extends React.Component {
         return <div className='container'>
             <div className='row'>
                 {this.state.vacation.map((obj, i) => {
-                    return <div className='col-md-4'>
+                    return <div className='col-md-4' key={i}>
                         <div className="card" key={i}>
                             <img src={obj.img} className="card-img-top" alt="..." />
                             <div className="card-body">

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import io from 'socket.io-client';
 import { Redirect } from 'react-router';
 
-const socket = io('/');
 
 class Login extends React.Component {
   state = {
@@ -14,10 +13,6 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    socket.emit('folowing');
-    socket.on('get_vacation', () => {
-      console.log("socket work");
-    })
   }
 
   hendlChange(e) {

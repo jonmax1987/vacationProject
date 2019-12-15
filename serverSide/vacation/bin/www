@@ -30,13 +30,13 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 var io = require('socket.io')(server)
+
 io.on('connect', (socket) => {
-  console.log('socket on')
-  socket.on('get Vacation', () => {
-    io.emit('msg-get vacation')///////////////io for all  
-  })
-  socket.on('jonnnnnnnnnn', () => {//////The server must be rebooted
-    io.emit('maxxxxxxxxxx')
+  console.log('connected socket!');
+  
+  socket.on('Get_vacation',()=>{
+    socket.emit('Enable_function')
+    console.log('Enable function');
   })
 })
 

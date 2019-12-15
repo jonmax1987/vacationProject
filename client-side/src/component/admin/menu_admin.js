@@ -12,7 +12,7 @@ class MenuAdmin extends React.Component {
                         <ul className="navbar-nav">
                             <li className="nav-item"><Link to='/addvacation' className='nav-link'>Add Vacation</Link></li>
                             <li className="nav-item"><Link className='nav-link' to="/graph">Graph</Link></li>
-                            <li className="nav-item"><Link className='nav-link' to="/admin">Vacation</Link></li>
+                            <li className="nav-item"><Link className='nav-link' to="/vacation">Vacation</Link></li>
                         </ul>
                     </div>
                 </nav>
