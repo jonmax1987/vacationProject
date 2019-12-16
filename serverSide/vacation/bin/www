@@ -35,7 +35,7 @@ io.on('connect', (socket) => {
   console.log('connected socket!');
   
   socket.on('Get_vacation',()=>{
-    socket.emit('Enable_function')
+    io.emit('Enable_function')
     console.log('Enable function');
   })
 })

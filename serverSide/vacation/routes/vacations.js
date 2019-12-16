@@ -31,8 +31,8 @@ router.post('/vacation', async function (req, res, next) {
           res.json(respons);
           return;
         }
+        vacation_list=[]
         for (let i = 0; i < folowing.length; i++) {
-          // let temp_vac = result;
           result.map((obj, index) => {
             if (obj.id == folowing[i].vacationid) {
               obj.like_ = 1
@@ -41,10 +41,10 @@ router.post('/vacation', async function (req, res, next) {
             }
           })
         }
+        console.log("result:", result); 
         result.map((obj) => {
           vacation_list.push(obj);
-        })
-        if (true) {
+        })    
           vacation_list.map((obj, i) => {
             con.query('SELECT COUNT(*) FROM user_to_vacation  WHERE vacationid = ?', [obj.id], function (err, num_folowing, fields) {
               if (err) {
@@ -59,7 +59,6 @@ router.post('/vacation', async function (req, res, next) {
               obj.number_followers = num_folow[0];
             })
           })
-        }
         await wait(1 * 1000);
         respons.success = true;
         respons.error = false;

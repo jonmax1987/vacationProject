@@ -9,7 +9,7 @@ class EditComp extends React.Component {
         startDate: this.props.obj.start_date,
         endDate: this.props.obj.end_date,
         price: this.props.obj.price,
-        img_64:''
+        img_64: ''
     }
 
     componentDidMount() {
@@ -18,6 +18,7 @@ class EditComp extends React.Component {
     };
 
     savevacation = () => {
+        this.decode();
         let obj = {
             description: this.state.description,
             target: this.state.target,
@@ -47,12 +48,17 @@ class EditComp extends React.Component {
     handlChange(e) {
         this.state[e.target.name] = e.target.value;
         this.setState({});
-        
+
         if (e.target.name == 'img') {
             this.state.img_64 = btoa(e.target.value);
             this.setState({});
             console.log(this.state.img_64);
         }
+    };
+
+    decode(){
+        this.state.img_64 = btoa(this.state.img);
+        this.setState({});
     };
 
     render() {

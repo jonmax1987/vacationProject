@@ -1,68 +1,32 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
 import CanvasJSReact from '../../assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
-const socket = io('/');
+
 
 
 class CanvasComp extends Component {
   state = {
-    vacation: []
+    vacation:this.props.vacation,
+    vacations: []
   }
   componentDidMount() {
-    socket.on('Enable_function', () => {
-      this.getVacation();
-      console.log('got vacation');
-  })
+    this.option();
   }
 
-  getVacation = () => {
-    let user_local = localStorage.id_user
 
-    if (user_local == null || user_local == undefined) {
-        this.state.show_alert = false;
-        this.setState({});
-        return;
-    }
-    this.state.show_alert = true;
-    this.setState({});
-    let user_id = {
-        id: localStorage.getItem('id_user')
-    };
-    fetch('/vacations/vacation', {
-        method: "POST",
-        body: JSON.stringify(user_id),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(res => res.json())
-        .then((res) => {
-            if (res.message == "vacation list...") {
-                this.state.vacation = res.data;
-                this.setState({});
-                console.log('for graph:', this.state.vacation);
-                this.option(this.state.vacation)
-            } else {
-                alert(res.message)
-            }
-        })
-        .catch((err) => {
-            console.log("Error: ", err);
-        })
-};
-
-  option(object) {
-    object.map((obj) => {
+  option() {
+    this.state.vacation.map((obj) => {
       let datapoint = {
         label: '',
         y: 0
       }
       datapoint.label = obj.description;
       datapoint.y = obj.number_followers;
-      this.state.vacation.push(datapoint);
+      this.state.vacations.push(datapoint);
       this.setState({});
+      console.log(this.state.vacation);
+      
     })
   };
 
@@ -73,7 +37,7 @@ class CanvasComp extends Component {
       },
       data: [{
         type: "column",
-        dataPoints: this.state.vacation
+        dataPoints: this.state.vacations
       }]
     }
 

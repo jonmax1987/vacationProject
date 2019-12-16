@@ -3,9 +3,6 @@ import io from 'socket.io-client';
 
 const socket = io('/');
 
-// import { Redirect } from 'react-router';
-
-
 class HomeComp extends React.Component {
 
     state = {
@@ -32,17 +29,13 @@ class HomeComp extends React.Component {
     }
 
     getVacation = () => {
-        let user_local = localStorage.id_user
+        let user_local = localStorage.getItem('id_user')
         if (user_local == null || user_local == undefined) {
-            this.state.show_alert = false;
-            this.setState({});
+            alert("you are not login!!!")
             return;
         }
-        this.state.show_alert = true;
-        this.setState({});
-        let id = localStorage.getItem('id_user');
         let user_id = {
-            id: id
+            id: localStorage.getItem('id_user')
         };
         fetch('/vacations/vacation', {
             method: "POST",
@@ -96,6 +89,7 @@ class HomeComp extends React.Component {
                     socket.emit('Get_vacation');
                 } else {
                     this.state.folow_like = true;
+                    this.setState({});
                     console.log(res.message, true);
                     socket.emit('Get_vacation');
                 }
@@ -111,10 +105,6 @@ class HomeComp extends React.Component {
         const str = 'decode';
         const base64 = btoa(str);
         const decoded = atob(base64);
-
-        console.log('original:' + str);
-        console.log('base64:' + base64);
-        console.log('Decoded:' + decoded);
     };
 
     render() {

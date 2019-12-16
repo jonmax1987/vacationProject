@@ -24,16 +24,11 @@ class VacationComp extends React.Component {
     };
 
     getVacation = () => {
-        let user_local = localStorage.id_user
-        console.log(user_local);
-
+        let user_local = localStorage.getItem('id_user')
         if (user_local == null || user_local == undefined) {
-            this.state.show_alert = false;
-            this.setState({});
+            alert("you are not login!!!")
             return;
         }
-        this.state.show_alert = true;
-        this.setState({});
         let user_id = {
             id: localStorage.getItem('id_user')
         };

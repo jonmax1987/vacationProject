@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router';
+import Warning from '../../moduls/warning';
 
 
 class Login extends React.Component {
@@ -8,7 +9,10 @@ class Login extends React.Component {
     username: 'Enter  username',
     password: '',
     toHome: false,
-    toAdmin: false
+    toAdmin: false,
+    show_message: false,
+    message: "",
+    tipeClass: false
   }
 
   componentDidMount() {
@@ -33,6 +37,17 @@ class Login extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
+        if (res.message == "you are not loggedin!!!") {
+          this.state.show_message = true;
+          this.state.message = res.message;
+          this.state.tipeClass = false;
+          this.setState({});
+        } if (res.message == "you are loggedin!!!") {
+          this.state.show_message = true;
+          this.state.message = res.message;
+          this.state.tipeClass = true;
+          this.setState({});
+        }
         if (res.data != null) {
           localStorage.setItem('username', res.data.username)
           localStorage.setItem('id_user', res.data.id_user)
@@ -46,20 +61,19 @@ class Login extends React.Component {
               toAdmin: true
             })
           }
-        } else {
-          alert(res.message);
         }
       })
   };
 
   render() {
-    if (this.state.toAdmin == true){ 
+    if (this.state.toAdmin == true) {
       return <Redirect to='/admin' />
     }
     if (this.state.toHome == true) {
       return <Redirect to='/home' />
     }
     return <div className='col-md-8'>
+      {this.state.show_message ? <Warning class={this.state.tipeClass} message={this.state.message} /> : null}
       <div className='card p-3 bg-light'>
         <form className='form'>
           <h1 className="">Please sign in</h1>

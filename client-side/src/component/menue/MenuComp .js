@@ -14,18 +14,22 @@ class MenuComp extends React.Component {
         socket.on('Enable_function', () => {
             if (localStorage.getItem('username')) {
                 this.state.username = localStorage.getItem('username')
+                this.setState({});
                 console.log("local true");
-                
+
             } else {
                 this.state.username = 'geust'
                 console.log("local false");
-
+                this.setState({});
             }
         })
     }
 
     LogOff() {
         localStorage.clear();
+        this.state.username = 'geust'
+        this.setState({});
+        console.log("local false");
     };
 
     render() {
@@ -44,7 +48,7 @@ class MenuComp extends React.Component {
                     </div>
                     <ul className="navbar-nav">
                         <li className="nav-item"><div className='nav-link'> Welcome:{this.state.username}</div> </li>
-                        <li className='nav-item' onClick={this.LogOff.bind()}><Link className='nav-link' to="/">LogOut</Link></li>
+                        <li className='nav-item' onClick={this.LogOff.bind(this)}><Link className='nav-link' to="/">LogOut</Link></li>
                     </ul>
                 </nav>
             </div>
