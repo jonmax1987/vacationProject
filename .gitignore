@@ -1,3 +1,5 @@
 client-side/node_modules/
 
 serverSide/vacation/node_modules/
+gitignore
+git_stages.txt
