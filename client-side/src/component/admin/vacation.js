@@ -101,7 +101,7 @@ class VacationComp extends React.Component {
             </div>
             <div className='row'>
                 {this.state.vacation.map((obj, i) => {
-                    return <div className='col-md-3'>
+                    return <div className='col-md-3' key={i}>
                         <div className="card m-1 " key={i}>
                             <div className="card-body">
                                 <button style={{
