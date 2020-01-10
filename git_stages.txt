@@ -1,7 +1,1 @@
-1. Delete all .git and .gitignore files
-2. Go to main directory -> git init
-3. Create .gitignore file.
-4. git add -A,
-5. git commit -m "Message".
-6. git remote add origin *projectLink*.
-7. git push -u origin *branch*.
+
