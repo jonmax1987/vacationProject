@@ -1,0 +1,164 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: ינואר 10, 2020 בזמן 09:50 AM
+-- גרסת שרת: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `vacation`
+--
+
+-- --------------------------------------------------------
+
+--
+-- מבנה טבלה עבור טבלה `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT 2
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- הוצאת מידע עבור טבלה `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `role`) VALUES
+(1, 'jon', 'max', 'jonmax', '1234', 0),
+(5, 'sivan', 'max', 'sivanmax', '0000', 1),
+(6, 'saar', 'afuta', 'saar1', '1234', 1),
+(7, 'sofia', 'shay', 'sofiashay', '55595', 1),
+(8, 'Liel', 'Max', 'lielmax', '0000', 1),
+(9, NULL, '', 'jonmax1', '1111', 1),
+(10, NULL, '', 'jonmax2', '1111', 1),
+(11, 'jon ', 'max', 'itamarmax', '1234', 1);
+
+-- --------------------------------------------------------
+
+--
+-- מבנה טבלה עבור טבלה `user_to_vacation`
+--
+
+CREATE TABLE `user_to_vacation` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `vacationid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- הוצאת מידע עבור טבלה `user_to_vacation`
+--
+
+INSERT INTO `user_to_vacation` (`id`, `userid`, `vacationid`) VALUES
+(85, 1, 36),
+(86, 1, 32),
+(88, 6, 32),
+(97, 8, 38),
+(98, 8, 32),
+(99, 8, 37),
+(100, 8, 36),
+(102, 8, 25),
+(103, 5, 41),
+(104, 5, 37),
+(105, 5, 42),
+(108, 6, 42),
+(109, 6, 36),
+(111, 11, 42);
+
+-- --------------------------------------------------------
+
+--
+-- מבנה טבלה עבור טבלה `vacation`
+--
+
+CREATE TABLE `vacation` (
+  `id` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `target` varchar(255) NOT NULL,
+  `img` varchar(1000) NOT NULL,
+  `start_date` varchar(255) NOT NULL,
+  `end_date` varchar(255) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `number_followers` int(11) NOT NULL,
+  `like_` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- הוצאת מידע עבור טבלה `vacation`
+--
+
+INSERT INTO `vacation` (`id`, `description`, `target`, `img`, `start_date`, `end_date`, `price`, `number_followers`, `like_`) VALUES
+(36, 'Uman', 'charter', 'aHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM/cT10Ym46QU5kOUdjVDRJd3dib1I5cjE0M0hwS3IxQzVrM2FDUG04bU04TF9kSW0zd3prNTRvNGJoM2dFcm8mcw==', '15/01/20', '20/01/20', '399$', 0, 0),
+(37, 'yavan', 'aireport', 'aHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM/cT10Ym46QU5kOUdjVGVFelJyRGllMG0zU2hoS2l0TnV4U0FyeFowdFZxa0ttRDBkTWFUVFVXZHZBdmctTGhLZyZz', '31/01/20', '03/02/20', '250$', 0, 0),
+(38, 'Hong-Kong', 'huanina', 'aHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM/cT10Ym46QU5kOUdjVEhaOV8yRVNVdzNfbUVSa20xZEoyeWRZOWIycXZWMjZWSGFaMmhPemM1WGJsVWk2NmVvdyZz', '22/02/20', '28/02/20', '555$', 0, 0),
+(41, 'GEORGIA', 'charter', 'aHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM/cT10Ym46QU5kOUdjUjBYWlZHeE9qbFk3RFMwODlTNWxRemlLdWRfeWVSeDVwVV9ZamhiUmNBdTVvM1N4RV9RUSZz', '12/12/19', '12/01/20', '450$', 0, 0),
+(42, 'THAILAND', 'lkjsd', 'aHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM/cT10Ym46QU5kOUdjVEtRNEFqWlNNUGJHMWdkbXVkd3Z6Wlo2cGx0UjRiR3l6dWxUaGp5OHhUWHdlc09OX0smcw==', '25/01/20', '30/01/20', '600$', 0, 0),
+(43, 'nkjnjkn', 'nmn,m', '', '', '', '', 0, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- אינדקסים לטבלה `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- אינדקסים לטבלה `user_to_vacation`
+--
+ALTER TABLE `user_to_vacation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- אינדקסים לטבלה `vacation`
+--
+ALTER TABLE `vacation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `user_to_vacation`
+--
+ALTER TABLE `user_to_vacation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `vacation`
+--
+ALTER TABLE `vacation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
